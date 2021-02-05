@@ -8,7 +8,7 @@ export class Bid {
   id: number;
 
   @Column()
-  bids: number;
+  bid: number;
 
   @ManyToOne(
     () => Product,

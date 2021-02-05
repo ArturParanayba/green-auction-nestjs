@@ -9,6 +9,7 @@ import {
 import { Bid } from '../../bid/entity/bid.entity';
 import { argonSalt } from '../../../config/env/env.config';
 import * as argon2 from 'argon2';
+import { Product } from '../../product/entity/product.entity';
 
 @Entity()
 export class User {
@@ -29,6 +30,12 @@ export class User {
     bid => bid._user,
   )
   _userBids: Bid[];
+
+  @OneToMany(
+    () => Product,
+    product => product._userProd,
+  )
+  _prods: Product[];
 
   @BeforeInsert()
   async hashPassword() {

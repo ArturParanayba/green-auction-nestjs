@@ -1,9 +1,7 @@
-export interface ProductBids {
-  userId: number;
-  productId: number;
-  bid: number;
-}
+import { IsNotEmpty, IsNumber } from 'class-validator';
 
 export class BidDto {
-  bids: ProductBids[];
+  @IsNotEmpty()
+  @IsNumber()
+  bid: number;
 }
