@@ -23,7 +23,7 @@ export class Product {
     () => Bid,
     bid => bid._product,
   )
-  _bids: number;
+  _bids: Bid[];
 
   @ManyToOne(
     () => User,
