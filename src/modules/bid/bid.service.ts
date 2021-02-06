@@ -2,7 +2,6 @@ import {
   Injectable,
   InternalServerErrorException,
   Logger,
-  UnauthorizedException,
 } from '@nestjs/common';
 import { BidRepository } from './bid.repository';
 import { Bid } from './entity/bid.entity';
@@ -46,10 +45,10 @@ export class BidService {
     // check user age
     if (user.age < 18) {
       this.logger.error(
-        `sorry son, you cannot make a bid if you are not over 18 - your age: ${user.age}`,
+        `Sorry, you cannot make a bid if you are not over 18. Your age: ${user.age}`,
       );
-      throw new UnauthorizedException(
-        `sorry son, you cannot make a bid if you are not over 18 - your age: ${user.age}`,
+      throw new InternalServerErrorException(
+        `Sorry, you cannot make a bid if you are not over 18. Your age: ${user.age}`,
       );
     }
 
@@ -62,10 +61,10 @@ export class BidService {
     const checkBids = bidsPerProduct.map(bidCheck => {
       if (bid <= bidCheck.bid || bid <= prod.initialBid) {
         this.logger.error(
-          'sorry son, a higher bid has already been made for this product',
+          'A higher bid has already been made for this product',
         );
         throw new ConflictException(
-          'sorry son, a higher bid has already been made for this product',
+          'A higher bid has already been made for this product',
         );
       }
     });

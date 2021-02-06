@@ -68,9 +68,9 @@ export class UserService {
     } catch (err) {
       // if user or email already in use
       if (err.code === '23505') {
-        this.logger.error(`username or email already exists - ${err.message}`);
+        this.logger.error(`username already in use - ${err.message}`);
         throw new ConflictException(
-          `username or email already exists - ${err.message}`,
+          `username already in use exists - ${err.message}`,
         );
       }
 
