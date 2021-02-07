@@ -136,4 +136,9 @@ export class BidService {
       );
     }
   }
+
+  // bids per product
+  async bidsPerProductRight(id: number): Promise<Bid[]> {
+    return this.bidRepository.bidsPerProduct(id);
+  }
 }

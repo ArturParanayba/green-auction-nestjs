@@ -42,4 +42,9 @@ export class BidController {
   async deleteBid(@Param('id') id: number): Promise<any> {
     return this.bidService.deleteBid(id);
   }
+
+  @Get('product/:id')
+  async bidsPerProductRight(@Param('id') id: number): Promise<Bid[]> {
+    return this.bidService.bidsPerProductRight(id);
+  }
 }
