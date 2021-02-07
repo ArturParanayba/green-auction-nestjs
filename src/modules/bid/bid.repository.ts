@@ -34,9 +34,18 @@ export class BidRepository extends Repository<Bid> {
 
     try {
       const bids = await query
-        .select(['bid.id', 'bid.bid', 'product.id', 'product.product'])
         .leftJoinAndSelect(Product, 'product', 'product.id = bid.ProductId')
+        .leftJoinAndSelect(User, 'user', 'user.id = bid.UserId')
         .where('bid.ProductId = :id', { id: id })
+        .select([
+          'bid.id',
+          'bid.bid',
+          'product.id',
+          'product.product',
+          'product.initialBid',
+          'user.id',
+          'user.name',
+        ])
         .getRawMany();
 
       this.logger.verbose(`fetching bids per product by id ${id}`);
